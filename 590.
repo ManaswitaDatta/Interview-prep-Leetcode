@@ -20,17 +20,17 @@ class Node {
 class Solution {
     List<Integer> r = new ArrayList<>();
     public List<Integer> postorder(Node root) {
-        /* recursive approach
+        /* recursive approach */
         if(root == null)
             return r;
         for(Node x: root.children){
             postorder(x);
         }
         r.add(root.val);
-        return r;*/
+        return r;
         
         
-        /*Iterative approach using 2 stack
+        /*Iterative approach using 2 stack */
         Stack<Node> s1 =  new Stack<>();
         Stack<Integer> s2 = new Stack<>();
         if(root == null)
@@ -45,8 +45,23 @@ class Solution {
         }
         while(!s2.empty())
             r.add(s2.pop());
-        return r;*/
+        return r;
         
+        
+        //Iterative using 1 stack and Linkedlist
+        LinkedList<Integer> s = new LinkedList<>();
+        if(root == null)
+            return s;
+        Stack<Node> s1 =  new Stack<>();
+        s1.push(root);
+        while(!s1.empty()){
+            root = s1.pop();
+            s.addFirst(root.val);
+            for(Node x: root.children){
+                s1.push(x);
+            }
+        }
+        return s;
         
     }
 }
