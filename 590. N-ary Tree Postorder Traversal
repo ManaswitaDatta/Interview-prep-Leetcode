@@ -1,0 +1,52 @@
+/*
+// Definition for a Node.
+class Node {
+    public int val;
+    public List<Node> children;
+
+    public Node() {}
+
+    public Node(int _val) {
+        val = _val;
+    }
+
+    public Node(int _val, List<Node> _children) {
+        val = _val;
+        children = _children;
+    }
+};
+*/
+
+class Solution {
+    List<Integer> r = new ArrayList<>();
+    public List<Integer> postorder(Node root) {
+        /* recursive approach
+        if(root == null)
+            return r;
+        for(Node x: root.children){
+            postorder(x);
+        }
+        r.add(root.val);
+        return r;*/
+        
+        
+        /*Iterative approach using 2 stack
+        Stack<Node> s1 =  new Stack<>();
+        Stack<Integer> s2 = new Stack<>();
+        if(root == null)
+            return r;
+        s1.push(root);
+        while(!s1.empty()){
+            root = s1.pop();
+            s2.push(root.val);
+            for(Node x: root.children){
+                s1.push(x);
+            }
+        }
+        while(!s2.empty())
+            r.add(s2.pop());
+        return r;*/
+        
+        
+    }
+}
