@@ -1,0 +1,19 @@
+class Solution {
+    public boolean uniqueOccurrences(int[] arr) {
+        HashMap<Integer, Integer> count = new HashMap<>();
+        for(int x : arr){
+            count.put(x, count.getOrDefault(x,0) + 1);
+        }
+        //static solution
+        /*int[] hashC = new int[arr.size()];
+        for(Map.Entry<Integer,Integer> x : count.entrySet()){
+            if(hashC[x.getValue()-1] == 0)
+                hashC[x.getValue()-1] = 1;
+            else return false;
+        }
+        return true;*/
+        //Dynamic solution
+        Set<Integer> set = new HashSet<>(count.values());
+        return count.size() == set.size();
+    }
+}
