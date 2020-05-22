@@ -48,7 +48,7 @@ class Solution {
         return r;
         
         
-        //Iterative using 1 stack and Linkedlist
+        //Iterative using one stack and Linkedlist
         LinkedList<Integer> s = new LinkedList<>();
         if(root == null)
             return s;
