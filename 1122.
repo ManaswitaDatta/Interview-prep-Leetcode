@@ -1,0 +1,27 @@
+class Solution {
+    public int[] relativeSortArray(int[] arr1, int[] arr2) {
+       HashMap<Integer, Integer> keepCount = new HashMap<>();
+        int[] newArray = new int[arr1.length];
+       for(int x : arr2){
+           keepCount.put(x,0);
+       }
+       for(int x : arr1){
+           if(keepCount.containsKey(x) == true)
+                keepCount.put(x, keepCount.get(x) + 1);
+       }
+        int i = 0;
+        for(int x : arr2){
+               int count = keepCount.get(x);
+               while(count-- > 0){
+                   newArray[i++] = x;
+               }
+           }
+        int j = i;
+        for(int x : arr1){
+           if(keepCount.containsKey(x) == false)
+                newArray[i++] = x;
+       }
+        Arrays.sort(newArray, j, i);
+        return newArray;
+    }
+}
