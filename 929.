@@ -1,0 +1,28 @@
+class Solution {
+    public int numUniqueEmails(String[] emails) {
+        HashSet<String> unique = new HashSet<>();
+        for(String x : emails){
+            StringBuilder newStr = new StringBuilder();
+            char[] str = x.toCharArray();
+            int i = 0;
+            while(str[i] != '@'){
+                if(str[i] >= 'a' && str[i] <= 'z'){
+                    newStr.append(str[i++]);
+                }
+                else if(str[i]== '.')
+                    i++;
+                else if(str[i++] == '+'){
+                    while(str[i] != '@'){
+                        i++;
+                    }
+                    break;
+                }
+                else if(str[i++] == '@')
+                    break;
+            }
+            newStr.append(x, i, str.length);
+            unique.add(newStr.toString());
+        }
+        return unique.size();
+    }
+}
