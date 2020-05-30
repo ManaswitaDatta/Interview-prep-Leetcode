@@ -1,0 +1,24 @@
+class Solution {
+    public int countCharacters(String[] words, String chars) {
+        int count = 0;
+        int[] f = new int[26];
+        for(char x : chars.toCharArray()){
+            f[x - 'a']++;
+        }
+        int[] freq = f.clone();
+        for(String y: words){
+            int i = 0;
+            char[] x = y.toCharArray();
+            for(; i < x.length; i++){
+                if(freq[x[i] - 'a'] > 0)
+                    freq[x[i] - 'a']--;
+                else break;
+            }
+            if(i == x.length)
+                count += i;
+            freq = f.clone();
+        }
+        
+        return count;
+    }
+}
