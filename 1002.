@@ -1,0 +1,24 @@
+class Solution {
+    public List<String> commonChars(String[] A) {
+        int[] freq = new int[26];
+        for(char x: A[0].toCharArray())
+            freq[x - 'a']++;
+        for(String x: A){
+            int[] compare = new int[26];
+            for(char y: x.toCharArray())
+                compare[y-'a']++;
+            for(int i = 0; i < 26; i++){
+                freq[i] = Math.min(freq[i], compare[i]);
+            }
+        }
+        List<String> output = new ArrayList<>();
+        for(int i = 0; i < 26; i++){
+            if(freq[i] > 0){
+                while(freq[i] > 0){
+                    output.add(String.valueOf((char)(i + 'a')));
+                    freq[i]--;
+                }
+            }}
+        return output;
+    }
+}
