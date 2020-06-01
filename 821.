@@ -1,0 +1,43 @@
+class Solution {
+    public int[] shortestToChar(String S, char C) {
+        int[] output = new int[S.length()];
+        Arrays.fill(output, 0, S.length(), -1);
+        char[] x = S.toCharArray();
+        int lastIndex = -1;
+        for(int i = 0; i < x.length; i++){
+            if(C == x[i]){
+                output[i] = 0;
+                if(lastIndex == -1 && i != 0){
+                    lastIndex = i;
+                    int j = 1;
+                    while( i > 0){
+                        output[--i] = j++;
+                    }
+                    i = lastIndex;
+                }
+                else if(lastIndex != -1){
+                    if(i - lastIndex > 1){
+                        int a = lastIndex + 1;
+                        int b = i - 1;
+                        int j = 1;
+                        while(a <= b){
+                            output[a++] = j;
+                            output[b--] = j++;
+                        }
+                    }
+                    lastIndex = i;
+                }
+                else lastIndex = i;
+            } 
+            
+        }
+        if(lastIndex != S.length() -1){
+                int j = 1;
+                lastIndex++;
+                while(lastIndex < S.length()){
+                    output[lastIndex++] = j++;
+                }
+            }
+        return output;
+    }
+}
