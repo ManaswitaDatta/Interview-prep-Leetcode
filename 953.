@@ -1,0 +1,28 @@
+class Solution {
+    public boolean isAlienSorted(String[] words, String order) {
+        int[] seq = new int[26];
+        for(int i = 0; i < order.length(); i++){
+            seq[order.charAt(i) - 'a'] = i+1;
+        }
+        for(int i = 0; i < words.length - 1; i++){
+           int lenX = words[i].length();
+           int lenY = words[i+1].length();
+            int x = 0, y = 0;
+            while(x < lenX && y < lenY){
+            if(seq[words[i].charAt(x) - 'a'] < seq[words[i+1].charAt(y) - 'a'])
+               break;
+            if(seq[words[i].charAt(x) - 'a'] == seq[words[i+1].charAt(y) - 'a']){
+                x++;
+                y++;
+             }
+             else
+                 return false;
+            }
+            if(x == lenX || y == lenY){
+                if(lenX > lenY)
+                    return false;
+            }
+        }
+        return true;
+    }
+}
