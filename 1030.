@@ -1,0 +1,19 @@
+class Solution {
+    public int[][] allCellsDistOrder(int R, int C, int r0, int c0) {
+        List<List<int[]>> store = new ArrayList<>();
+        for(int i = 0; i < R+C; i++)
+            store.add(new ArrayList<int[]>());
+        for(int i = 0; i < R; i++)
+            for(int j = 0; j < C; j++){
+                int dist = Math.abs(r0 - i) + Math.abs(c0 - j);
+                store.get(dist).add(new int[]{i,j});
+            }
+        int[][] output = new int[R*C][2];
+        int index = 0;
+        for(List<int[]> x: store){
+            for(int[] y: x)
+                output[index++]= y;
+        }
+        return output;
+    }
+}
