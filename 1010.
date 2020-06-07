@@ -1,0 +1,19 @@
+class Solution {
+    public int numPairsDivisibleBy60(int[] time) {
+        int count = 0;
+        int[] freq = new int[60];
+        for(int i = 0; i < time.length; i++){
+            time[i] = time[i] % 60;
+            freq[time[i]]++;
+        }
+        for(int i = 0; i < freq.length; i++){
+            if(i == 30 || i == 0)
+             count += freq[i]*(freq[i] - 1) / 2;
+            else if(freq[60 - i] != 0){
+             count += freq[i]*freq[60 - i];
+                freq[60 - i] = 0;
+            }
+        }
+        return count;
+    }
+}
