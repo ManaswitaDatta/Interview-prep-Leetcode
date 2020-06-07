@@ -1,0 +1,14 @@
+class Solution {
+    public int minStartValue(int[] nums) {
+        int x = 0;
+        int sum = 0;
+        for(int i: nums){
+            sum = sum + i;
+            if(sum <= 0){
+                x = x + Math.abs(sum) + 1;
+                sum = 1;
+            }
+        }
+        return (x>0)?x:1;
+    }
+}
