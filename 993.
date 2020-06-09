@@ -1,0 +1,36 @@
+class Solution {
+    int p1 = -1, p2 = -1, h1 = -1, h2 = -1;
+    private void findparent(TreeNode root, int x, int y, int rootVal){
+       if(root == null)
+           return;
+        if(root.val == x)
+            p1 = rootVal;
+        if(root.val == y)
+            p2 = rootVal;
+        findparent(root.left, x, y, root.val);
+        findparent(root.right, x, y, root.val);
+        return;
+    }
+    
+    private void findHeight(TreeNode root, int x, int y, int height){
+        if(root == null)
+            return;
+        if(root.val == x)
+            h1 = height;
+        if(root.val == y)
+            h2 = height;
+        findHeight(root.left, x, y,height+1);
+        findHeight(root.right, x, y,height+1);
+        return;
+    }
+    
+    public boolean isCousins(TreeNode root, int x, int y) {
+        findparent(root, x, y, -1);
+        if(p1 != p2){
+            findHeight(root, x, y, 0);
+            if(h1 == h2)
+                return true;
+        }
+        return false;
+    }
+}
