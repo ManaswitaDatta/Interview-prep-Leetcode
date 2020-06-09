@@ -1,0 +1,12 @@
+class Solution {
+    public String dayOfTheWeek(int day, int month, int year) {
+      String[] oddDays = new String[]{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+        int[] oddInMonth = new int[]{0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
+        int yy = year;
+        if(month < 3)
+            yy--;
+        int leapOdd = yy/4 - yy/100 + yy/400;
+        int oddD = leapOdd + 365*(year - 1) + oddInMonth[month - 1] + day;
+        return oddDays[oddD%7];
+    }
+}
