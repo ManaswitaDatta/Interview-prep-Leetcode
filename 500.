@@ -1,0 +1,21 @@
+class Solution {
+    private boolean containsAll(String str, int[] rowno){
+        str = str.toUpperCase();
+        char z = str.charAt(0);
+        int f = rowno[z - 'A'];
+        for(char x: str.toCharArray()){
+            if(rowno[x - 'A'] != f)
+                return false;
+        }
+        return true;
+    }
+    public String[] findWords(String[] words) {
+        int[] rowno = new int[]{2,3,3,2,1,2,2,2,1,2,2,2,3,3,1,1,1,1,2,1,1,3,1,3,1,3};
+        List<String> output = new ArrayList<>();
+        for(String x: words){
+            if(containsAll(x, rowno))
+                output.add(x);
+        }
+        return output.toArray(new String[0]);
+    }
+}
