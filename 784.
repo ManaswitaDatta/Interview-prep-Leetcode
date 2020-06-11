@@ -1,0 +1,22 @@
+class Solution {
+    private void addToList(char[] S, List<String> output, int index){
+        if(index == S.length){
+            output.add(new String(S));
+            return;
+        }
+        if(Character.isDigit(S[index]))
+            addToList(S, output, index+1);
+        else{
+            char x = S[index];
+            S[index] = Character.toUpperCase(x);
+            addToList(S, output, index+1);
+            S[index] = Character.toLowerCase(x);
+            addToList(S, output, index+1);
+        }
+    }
+    public List<String> letterCasePermutation(String S) {
+        List<String> output = new ArrayList<>();
+        addToList(S.toCharArray(), output, 0);
+        return output;
+    }
+}
