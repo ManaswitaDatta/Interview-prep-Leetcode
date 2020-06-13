@@ -1,0 +1,16 @@
+class Solution {
+    public String[] uncommonFromSentences(String A, String B) {
+        Map<String, Integer> freq = new HashMap<>();
+        for(String x: A.split(" ")){
+            freq.put(x, freq.getOrDefault(x,0) + 1);
+        }
+        for(String x: B.split(" ")){
+            freq.put(x, freq.getOrDefault(x,0) + 1);
+        }
+        List<String> output = new ArrayList<>();
+        for(String w: freq.keySet())
+            if(freq.get(w) == 1)
+                output.add(w);
+        return output.toArray(new String[0]);
+    }
+}
