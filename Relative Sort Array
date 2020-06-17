@@ -1,0 +1,21 @@
+class Solution {
+    public int[] relativeSortArray(int[] arr1, int[] arr2) {
+        int[] freq = new int[1001];
+        for(int x: arr1)
+            freq[x]++;
+        int i = 0;
+        for(int x: arr2){
+            int f = freq[x];
+            while(f-- > 0)
+                arr1[i++] = x;
+            freq[x] = 0;
+        }
+        for(int j = 0; j < 1001; j++)
+            if(freq[j] != 0){
+                int f = freq[j];
+                while(f-- > 0)
+                    arr1[i++] = j;
+            }
+        return arr1;
+    }
+}
