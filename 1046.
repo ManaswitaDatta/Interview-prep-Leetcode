@@ -1,0 +1,21 @@
+class Solution {
+    private int findMax(List<Integer> store){
+        int max = Integer.MIN_VALUE;
+        for(int x: store)
+            max = Math.max(max, x);
+        store.remove(new Integer(max));
+        return max;
+    }
+    public int lastStoneWeight(int[] stones) {
+        List<Integer> store = new ArrayList<>();
+        for(int x: stones)
+            store.add(x);
+        while(store.size() > 1){
+            int y = findMax(store);
+            int x = findMax(store);
+            if(x != y)
+                store.add(y-x);
+        }
+        return store.size() == 0 ? 0 : store.get(0);
+    }
+}
