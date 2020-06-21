@@ -1,0 +1,20 @@
+class Solution {
+    public int maxNumberOfBalloons(String text) {
+        int[] freqBalloon = new int[5];
+        for(char x: text.toCharArray()){
+            switch(x){
+                case 'b':freqBalloon[0]++; break;
+                case 'a':freqBalloon[1]++; break;
+                case 'l':freqBalloon[2]++; break;
+                case 'o':freqBalloon[3]++; break;
+                case 'n':freqBalloon[4]++; break;
+            }
+        }
+        freqBalloon[2] /= 2;
+        freqBalloon[3] /= 2;
+        int n = Integer.MAX_VALUE;
+        for(int x: freqBalloon)
+            n = Math.min(x,n);
+        return n;
+    }
+}
