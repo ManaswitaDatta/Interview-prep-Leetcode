@@ -1,0 +1,15 @@
+class Solution {
+    public int maxPower(String s) {
+        int count = 1;
+        int i = 0;
+        while(i + 1 < s.length()){
+            char x = s.charAt(i);
+            int t = 1;
+            while(i + 1 < s.length() && x == s.charAt(++i)){
+                ++t;
+            }
+            count = Math.max(t,count);
+        }
+        return count;
+    }
+}
