@@ -1,0 +1,38 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    private void preorder(List<Integer> binary, TreeNode root, int sum){
+        if(root.left == null && root.right == null){
+            binary.add(sum);
+        }
+        if(root.left!= null)
+            preorder(binary, root.left, 2*sum + root.left.val);
+        if(root.right != null)
+            preorder(binary, root.right, 2*sum + root.right.val);
+        
+    }
+    public int sumRootToLeaf(TreeNode root) {
+        if(root == null)
+            return 0;
+        List<Integer> binary = new ArrayList<>();
+        preorder(binary, root, root.val);
+        int sum = 0;
+        for(int x: binary){
+            sum += x;
+        }
+        return sum;
+    }
+}
