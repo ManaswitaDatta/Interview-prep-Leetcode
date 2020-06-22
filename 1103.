@@ -1,0 +1,22 @@
+class Solution {
+    public int[] distributeCandies(int candies, int num_people) {
+        int[] c = new int[num_people];
+        int j = 1;
+        int index = 0;
+        while(candies > 0){
+            c[index++] += j;
+            candies -= j;
+            if(index == num_people)
+                index = 0;
+            if(candies > j)
+                j++;
+            else {
+                c[index] += candies;
+                break;
+            }     
+            
+        }
+        
+        return c;
+    }
+}
