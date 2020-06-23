@@ -1,0 +1,26 @@
+/** 
+ * Forward declaration of guess API.
+ * @param  num   your guess
+ * @return 	     -1 if num is lower than the guess number
+ *			      1 if num is higher than the guess number
+ *               otherwise return 0
+ * int guess(int num);
+ */
+
+public class Solution extends GuessGame {
+    private int bs(int i, int j){
+        if(j >= i){
+            int mid = i + (j-i)/2;
+            int x = guess(mid);
+            if(x == -1)
+                return bs(i, mid-1);
+            if(x == 1)
+                return bs(mid+1, j);
+            else return mid;
+        }
+        throw null;
+    }
+    public int guessNumber(int n) {
+        return bs(1,n);
+    }
+}
