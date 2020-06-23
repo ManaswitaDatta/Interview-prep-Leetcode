@@ -1,0 +1,8 @@
+class Solution {
+    public int findSpecialInteger(int[] arr) {
+        int left = 0, right = arr.length/4;
+        while(right < arr.length)
+            if(arr[left++] == arr[right++]) return arr[left-1];
+        return -1;
+    }
+}
