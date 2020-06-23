@@ -1,0 +1,17 @@
+class Solution {
+    private boolean checkPal(String S){
+        int i = 0, j = S.length() - 1;
+        while(i < j){
+            if(S.charAt(i++) != S.charAt(j--))
+                return false;
+        }
+        return true;
+    }
+    public int removePalindromeSub(String s) {
+        if(s.equals(""))
+            return 0;
+        if(checkPal(s))
+            return 1;
+        return 2;
+    }
+}
