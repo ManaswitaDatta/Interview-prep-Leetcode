@@ -1,0 +1,27 @@
+class Solution {
+    private int f(String s){
+        int[] alpha = new int[26];
+        for(char x : s.toCharArray())
+            alpha[x-'a']++;
+        int i = -1;
+        while(alpha[++i] == 0);
+        return alpha[i];
+    }
+    public int[] numSmallerByFrequency(String[] queries, String[] words) {
+        int[] freqwords = new int[11];
+        for(String x : words)
+            ++freqwords[f(x)];
+        //cumulative freq 
+        int freq = freqwords[10];
+        freqwords[10] = 0;
+        for(int i = 9; i > 0; i--){
+            int temp = freqwords[i];
+            freqwords[i] = freq;
+            freq += temp;
+        }
+        int[] output = new int[queries.length];
+        for(int i = 0; i < queries.length; i++)
+            output[i] = freqwords[f(queries[i])];
+        return output;
+    }
+}
