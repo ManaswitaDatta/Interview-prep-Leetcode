@@ -1,0 +1,22 @@
+class Solution {
+    private boolean checkIsAlpha(char s){
+        if((s  >= 'a' && s <= 'z') || (s  >= 'A' && s <= 'Z'))
+            return true;
+        return false;
+    }
+
+    public String reverseOnlyLetters(String S) {
+        int i = 0, j = S.length() - 1;
+        char[] c = S.toCharArray();
+        while(i < j){
+            if(checkIsAlpha(c[i]) && checkIsAlpha(c[j])){
+                char t = c[i]; 
+                c[i++] = c[j];
+                c[j--] = t;
+            }
+            if(i<j && !checkIsAlpha(c[i])) i++;
+            if(i<j && !checkIsAlpha(c[j])) j--;
+        }
+        return new String(c);
+    }
+}
