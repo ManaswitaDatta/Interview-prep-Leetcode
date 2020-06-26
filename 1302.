@@ -1,0 +1,37 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    int sum = 0;
+    int maxL = 0;
+    private void findSum(TreeNode root, int level){
+        if(root == null)
+            return;
+        if(level == maxL){
+            sum += root.val;
+        }
+        if(level > maxL){
+            maxL = level;
+            sum = 0;
+            sum = root.val;
+        }
+        findSum(root.left, level+1);
+        findSum(root.right, level+1);
+    }
+    public int deepestLeavesSum(TreeNode root) {
+        findSum(root, 0);
+        return sum;
+    }
+}
