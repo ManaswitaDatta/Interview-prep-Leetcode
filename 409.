@@ -1,0 +1,16 @@
+class Solution {
+    public int longestPalindrome(String s) {
+        int[] uppercase = new int[26];
+        int[] lowercase = new int[26];
+        for(char x : s.toCharArray()){
+            if(x >='a') lowercase[x - 'a']++;
+            else uppercase[x - 'A']++;
+        }
+        int len = 0;
+        for(int i = 0; i < 26; i++)
+            len += (uppercase[i]/2)*2 + (lowercase[i]/2)*2;
+        
+        if(len < s.length()) return len + 1;
+        return len;
+    }
+}
