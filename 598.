@@ -1,0 +1,12 @@
+class Solution {
+    public int maxCount(int m, int n, int[][] ops) {
+        int count = m*n;
+        int x = Integer.MAX_VALUE, y = Integer.MAX_VALUE;
+        for(int[] arr : ops){
+                x = Math.min(arr[0],x);
+                y = Math.min(arr[1],y);
+                count = x*y;
+        }
+        return count;
+    }
+}
