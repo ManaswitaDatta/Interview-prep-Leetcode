@@ -1,0 +1,22 @@
+class Solution {
+    private boolean matches(int i, String A, String B){
+        
+        int n = B.length();
+            int j = 0;
+            for(; j < n; j++)
+            if(A.charAt(j) == B.charAt(i))
+                i = (i+1)%n;
+            else break;
+            if(j == n) return true;
+        return false;
+    }
+    public boolean rotateString(String A, String B) {
+        if(A.equals("") && B.equals("")) return true;
+        if(A.length() != B.length()) return false;
+        int n = B.length();
+        for(int i = 0; i < n; i++)
+            if(B.charAt(i) == A.charAt(0) && matches(i, A, B))
+                return true;
+        return false;
+    }
+}
