@@ -1,0 +1,14 @@
+class Solution {
+    public List<List<Integer>> largeGroupPositions(String S) {
+        List<List<Integer>> result = new ArrayList<>();
+        int i = 0;
+        int n = S.length();
+        while(i < n){
+            int j = i;
+            i++;
+            while(i < n && S.charAt(j) == S.charAt(i)) ++i;
+            if(i - j > 2) result.add(Arrays.asList(new Integer[]{j, i-1}));
+        }
+        return result;
+    }
+}
