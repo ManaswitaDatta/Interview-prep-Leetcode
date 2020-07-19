@@ -1,0 +1,14 @@
+class Solution {
+    private boolean leap(int n){
+        if(n % 400 == 0) return true;
+        if(n % 100 != 0 && n%4 == 0) return true;
+        return false;
+    }
+    public int dayOfYear(String date) {
+        int[] days = new int[]{0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
+        int month = Integer.valueOf(date.substring(5,7));
+        int number = days[month-1] + Integer.valueOf(date.substring(8,10));
+        if(month > 2 && leap(Integer.valueOf(date.substring(0,4)))) number++;
+        return number;
+    }
+}
