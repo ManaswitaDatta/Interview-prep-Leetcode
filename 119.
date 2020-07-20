@@ -1,0 +1,25 @@
+//Using O(k) extra space
+class Solution {
+    public List<Integer> getRow(int rowIndex) {
+        Integer[] result = new Integer[rowIndex+1];
+        List<Integer> r = new ArrayList<>();
+        result[0] = new Integer(1);
+        if(rowIndex == 0) 
+             return new ArrayList<Integer>(Arrays.asList(result));
+
+        result[1] = new Integer(1);
+        int k = 2;
+        while(k <= rowIndex){
+            int t = 1;
+            result[k] = 1;
+        for(int i = 1 ; i < k; i++) {
+            int temp = result[i];
+            result[i] += t;
+            t = temp;
+            } 
+            
+            k++;
+        }
+        return new ArrayList<Integer>(Arrays.asList(result));
+    }
+}
