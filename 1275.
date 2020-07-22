@@ -1,0 +1,28 @@
+class Solution {
+    private String winner(int x){
+        if(x == 0) return "A";
+        return "B";  
+    }
+    public String tictactoe(int[][] moves) {
+        int[][] tt = new int[3][3];
+        Arrays.fill(tt[0], -1); Arrays.fill(tt[1], -1); Arrays.fill(tt[2], -1);
+        int filler = 0;
+        for(int x[] : moves){
+            tt[x[0]][x[1]] = filler;
+            filler = 1 - filler;
+        }
+        //check rows
+        for(int i = 0; i < 3; i++)
+            if(tt[i][0] == tt[i][1] && tt[i][1] == tt[i][2] && tt[i][0] != -1) 
+                return winner(tt[i][0]);
+        //check column
+        for(int i = 0; i < 3; i++)
+            if(tt[0][i] == tt[1][i] && tt[1][i] == tt[2][i] && tt[0][i] != -1) 
+                return winner(tt[0][i]);
+        //check diagonal
+        if(tt[0][0] == tt[1][1] && tt[1][1] == tt[2][2] && tt[2][2] != -1) return winner(tt[0][0]);
+        if(tt[0][2] == tt[1][1] && tt[1][1] == tt[2][0] && tt[2][0] != -1) return winner(tt[0][2]);
+        if(moves.length == 9) return "Draw";
+        return "Pending";
+    }
+}
