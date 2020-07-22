@@ -1,0 +1,20 @@
+class Solution {
+    public boolean canThreePartsEqualSum(int[] A) {
+        int sum = 0;
+        for(int x : A)
+            sum += x;
+        if(sum % 3 != 0) return false;
+        int pdt = sum / 3;
+        int x = 0;
+        int i = 0;
+        int count = 0;
+        while(i < A.length){
+            x += A[i++];
+            if(x == pdt){
+                count++;
+                x = 0;
+            }
+        }
+        return count >= 3;
+    }
+}
