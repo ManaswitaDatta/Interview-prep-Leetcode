@@ -1,0 +1,23 @@
+/*
+// Definition for Employee.
+class Employee {
+    public int id;
+    public int importance;
+    public List<Integer> subordinates;
+};
+*/
+
+class Solution {
+    private int addsubs(int id, HashMap<Integer, Employee> map){
+        int imp = map.get(id).importance;
+        for(int x : map.get(id).subordinates)
+            imp += addsubs(x, map);
+        return imp;
+    }
+    public int getImportance(List<Employee> employees, int id) {
+        HashMap<Integer, Employee> map = new HashMap<>();
+        for(Employee e : employees)
+           map.put(e.id, e);
+        return addsubs(id, map);
+    }
+}
