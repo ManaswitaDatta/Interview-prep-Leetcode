@@ -1,0 +1,30 @@
+class Solution {
+    private boolean allZeroes(int[] freq){
+        for(int x : freq)
+            if(x > 0) return false;
+        return true;
+    }
+    public String shortestCompletingWord(String licensePlate, String[] words) {
+        licensePlate = licensePlate.toLowerCase();
+        int[] freqOfBase = new int[26];
+        for(char x : licensePlate.toCharArray())
+            if(Character.isLetter(x)){
+                ++freqOfBase[x - 'a'];
+            }
+        int len = 1001;
+        String result = "";
+        for(String str : words){
+            if(str.length() >= len) continue;
+            int[] freqCurr = freqOfBase.clone();
+            for(char x : str.toCharArray())
+            if(Character.isLetter(x)){
+                --freqCurr[x - 'a'];
+            }
+            if(allZeroes(freqCurr)) {
+                len = str.length();
+                result = str;
+            }
+        }
+        return result;
+    }
+}
