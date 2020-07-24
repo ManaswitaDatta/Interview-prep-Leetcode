@@ -1,0 +1,15 @@
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for(int x : nums){
+            min = Math.min(min,x);
+            max = Math.max(max,x);
+        }
+        int[] freq = new int[max - min + 1];
+        for(int x : nums){
+            if(++freq[x-min] > 1) return true;
+        }
+        return false;
+    }
+}
