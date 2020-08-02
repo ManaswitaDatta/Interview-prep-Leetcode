@@ -1,0 +1,22 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+        int profit = 0;
+        int len = prices.length;
+        int curr = -1;
+        int max = -1;
+        int i = 0;
+        while(i < len){
+            curr = prices[i];
+            while(i+1<len && prices[i+1] <= prices[i]) i++;
+            curr = prices[i];
+            if(i+1 >= len) break;
+            max = prices[++i];
+            while(i+1 < len && prices[i] <= prices[i+1]) i++;
+            max = prices[i];
+            if(max != -1) profit += max - curr;
+            max = -1;
+            
+        }
+        return profit;
+    }
+}
