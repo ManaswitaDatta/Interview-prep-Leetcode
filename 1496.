@@ -1,0 +1,19 @@
+class Solution {
+    public boolean isPathCrossing(String path) {
+        int x = 0, y = 0;
+        HashSet<Pair<Integer, Integer>> set = new HashSet<>();
+        set.add(new Pair<>(x,y));
+        int i = 0;
+        while(i < path.length()){
+            switch(path.charAt(i)){
+                case 'N':y++; break;
+                case 'S': y--; break;
+                case 'E': x++; break;
+                case 'W': x--; break;
+            }
+            i++;
+            if(!set.add(new Pair<>(x,y))) return true;
+        }
+        return false;
+    }
+}
