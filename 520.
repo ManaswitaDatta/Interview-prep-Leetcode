@@ -1,0 +1,11 @@
+class Solution {
+    public boolean detectCapitalUse(String word) {
+        int allCap = 0;
+        boolean firstCap = false;
+        int len = word.length();
+        if(word.charAt(0) >= 'A' && word.charAt(0) <= 'Z') firstCap = true;
+        for(char x : word.toCharArray())
+            if(x >= 'A' && x <= 'Z') allCap++;
+        return firstCap && allCap == 1 || allCap == 0 || allCap == len;
+    }
+}
