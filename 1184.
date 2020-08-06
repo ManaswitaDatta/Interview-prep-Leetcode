@@ -1,0 +1,14 @@
+class Solution {
+    public int distanceBetweenBusStops(int[] distance, int start, int destination) {
+        int c = 0;
+        int n = distance.length;
+        int sum = 0;
+        for(int x : distance) sum += x;
+        int i = start;
+        while(i != destination){
+            c += distance[i];
+            i = (i+1)%n;
+        }
+        return Math.min(c,sum - c);
+    }
+}
