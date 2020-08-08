@@ -1,0 +1,18 @@
+class Solution { 
+    private int findMax(int[] nums, int start, int end){
+        int index = start;
+        for(int i = start+1; i <= end; i++) 
+            if(nums[index] < nums[i]){
+                index = i;
+            }
+        return index;
+    }
+    private TreeNode nextMax(int[] nums, int start, int end){
+        if(start > end) return null;
+        int index = findMax(nums, start,end);
+        return new TreeNode(nums[index], nextMax(nums, start, index-1), nextMax(nums, index+1, end));
+    }
+    public TreeNode constructMaximumBinaryTree(int[] nums) {
+        return nextMax(nums, 0, nums.length-1);
+    }
+}
