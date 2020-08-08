@@ -1,0 +1,14 @@
+class Solution { 
+    int sum = 0;
+    private void preorder(TreeNode root, boolean grandp, boolean p){
+        if(root == null) return;
+        if(grandp) sum += root.val;
+        boolean x = root.val % 2 == 0;
+        preorder(root.left, p, x);
+        preorder(root.right, p, x);
+    }
+    public int sumEvenGrandparent(TreeNode root) {
+        preorder(root, false, false);
+        return sum;
+    }
+}
