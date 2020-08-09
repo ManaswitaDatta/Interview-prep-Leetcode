@@ -1,0 +1,15 @@
+class Solution {
+    private TreeNode nextNode(int[] preorder, int  s, int e){
+        if(s >= e) return null;
+        TreeNode root = new TreeNode(preorder[s]);
+        int i = s+1;
+        for(; i < e; i++)
+            if(preorder[s] < preorder[i]) break;
+        root.left = nextNode(preorder, s+1, i);
+        root.right = nextNode(preorder, i, e);
+        return root;
+    }
+    public TreeNode bstFromPreorder(int[] preorder) {
+        return nextNode(preorder, 0, preorder.length);
+    }
+}
