@@ -1,0 +1,18 @@
+class Solution { 
+    public int numTeams(int[] rating) {
+        int  count = 0;
+        for(int i = 1; i < rating.length-1; i++){
+            int al = 0,  ar = 0, dl = 0, dr = 0;
+            for(int j = 0; j < i; j++){
+                if(rating[i] > rating[j]) al++;
+                else dl++;
+            }
+        for(int j = i+1; j < rating.length; j++){
+                if(rating[i] > rating[j]) dr++;
+                else ar++;
+            }
+            count += al*ar + dr*dl;
+        }
+        return count;
+    }
+}
