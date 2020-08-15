@@ -1,0 +1,20 @@
+class Solution {
+    private void nextNode(List<List<Integer>> output,List<Integer> newPath,int index, int[][] graph){
+        if(index == graph.length - 1) {
+            output.add(new ArrayList<>(newPath));
+            return;
+        }
+        for(int i = 0; i < graph[index].length; i++){
+            newPath.add(graph[index][i]);
+            nextNode(output,newPath, graph[index][i], graph);
+            newPath.remove(newPath.size() - 1);
+        }
+    }
+    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+        List<List<Integer>> output = new ArrayList<>();
+        List<Integer> newPath = new ArrayList<>();
+        newPath.add(0);
+        nextNode(output, newPath, 0, graph);
+        return output;
+    }
+}
