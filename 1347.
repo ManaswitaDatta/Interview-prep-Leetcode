@@ -1,0 +1,17 @@
+class Solution {
+    public int minSteps(String s, String t) {
+     int[] freq = new int[26];
+        
+        for(char x : s.toCharArray()){
+            freq[x - 'a']++;
+        }
+        for(char x : t.toCharArray()){
+            freq[x - 'a']--;
+        }
+        int count = 0;
+        for(int x : freq)
+            if(x >= 1)
+            count += x;
+        return count;
+    }
+}
