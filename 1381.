@@ -1,0 +1,26 @@
+class CustomStack {
+    int[] arr;
+    int i = -1;
+    int size;
+    public CustomStack(int maxSize) {
+        arr = new int[maxSize];
+        size = maxSize;
+    }
+    
+    public void push(int x) {
+        if(i < size-1)
+            arr[++i] = x;
+    }
+    
+    public int pop() {
+        if(i == -1) return -1;
+        return arr[i--];
+    }
+    
+    public void increment(int k, int val) {
+        k--;
+        k = Math.min(k, i);
+        for(int j = 0; j <= k; j++)
+            arr[j] += val;
+    }
+}
