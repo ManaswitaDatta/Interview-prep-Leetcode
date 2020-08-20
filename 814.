@@ -2,16 +2,11 @@ class Solution {
     
     public TreeNode pruneTree(TreeNode root) {
         if(root == null) return root;
-        pruneTree(root.left);
-        pruneTree(root.right);
-        if(root.left != null)
-            if(root.left.val == 0 && root.left.left == null && root.left.right == null)
-                root.left = null;
-        if(root.right != null)
-            if(root.right.val == 0 && root.right.left == null && root.right.right == null)
-                root.right = null;
-        if(root.left == null && root.right == null)
-            root = null;
+         if(root == null) return root;
+        root.left = pruneTree(root.left);
+        root.right = pruneTree(root.right);
+        if(root.val == 0 && root.left == null && root.right == null)
+                return null;
         return root;
     }
 }
