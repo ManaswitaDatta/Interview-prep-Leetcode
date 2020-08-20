@@ -1,0 +1,23 @@
+class FindElements {
+    Set<Integer> store = new HashSet<>();
+    private void recover(TreeNode root, int val){
+       if(root == null) return;
+        root.val = val;
+        store.add(val);
+        recover(root.left, 2*val + 1);
+        recover(root.right, 2*val + 2);
+    }
+    public FindElements(TreeNode root) {
+        recover(root, 0);
+    }
+    
+    public boolean find(int target) {
+        return store.contains(target);
+    }
+}
+
+/**
+ * Your FindElements object will be instantiated and called as such:
+ * FindElements obj = new FindElements(root);
+ * boolean param_1 = obj.find(target);
+ */
