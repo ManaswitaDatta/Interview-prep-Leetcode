@@ -1,0 +1,19 @@
+class Solution {
+    public int minAddToMakeValid(String S) {
+        int total = 0;
+        int score = 0;
+        for(char s : S.toCharArray()){
+            if(s == '('){
+                if(score<0){
+                    total -= score;
+                    score = 0;
+                }  
+                score++;
+            }
+            else{
+                score--;
+            }
+        }
+        return total+Math.abs(score);
+    }
+}
