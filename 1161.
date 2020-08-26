@@ -1,0 +1,22 @@
+class Solution {
+    private int height(TreeNode root){
+        if(root == null) return 0;
+        return 1 + Math.max(height(root.left), height(root.right));
+    }
+    private void findSum(TreeNode root, int[] sum, int h){
+        if(root == null) return;
+        sum[h] += root.val;
+        findSum(root.left, sum, h+1);
+        findSum(root.right, sum, h+1);
+    }
+    public int maxLevelSum(TreeNode root) {
+        int h = height(root);
+        int[] sum = new int[h];
+        findSum(root, sum, 0);
+        int index = 0;
+        for(int i = 1; i < h; i++)
+            if(sum[index] < sum[i])
+                index = i;
+        return index+1;
+    }
+}
