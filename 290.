@@ -1,0 +1,21 @@
+class Solution {
+    public boolean wordPattern(String pattern, String str) {
+        String[] s = str.split(" ", -1);
+        boolean[] visited = new boolean[26];
+        String[] map = new String[26];
+        HashSet<String> occurred = new HashSet<>();
+        int n = s.length;
+        if(n != pattern.length()) return false;
+        for(int i = 0; i < n; i++){
+            int index = pattern.charAt(i)-'a';
+            if(!visited[index]){
+                if(!occurred.add(s[i])) return false;
+                else {visited[index] = true;
+                map[index] = s[i];}
+            }
+            else if(!map[index].equals(s[i]))
+                return false;
+        }
+        return true;
+    }
+}
