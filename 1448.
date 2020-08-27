@@ -1,0 +1,17 @@
+class Solution {
+   
+    private int count(TreeNode root, int max){
+        if(root == null) return 0;
+        int c = 0;
+        if(root.left != null)
+            c += count(root.left, Math.max(max, root.left.val));
+        if(root.right != null)
+            c += count(root.right, Math.max(max, root.right.val));
+        if(max == root.val) 
+            c++;
+        return c;
+    }
+    public int goodNodes(TreeNode root) {
+        return count(root, root.val);
+    }
+}
