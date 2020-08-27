@@ -1,0 +1,16 @@
+class Solution {
+    public int[] countBits(int num) {
+        int[] result = new int[num+1];
+        if(num >= 1)
+            result[1] = 1;
+        for(int i = 2; i <= num; i*=2)
+            result[i] = 1;
+        int d = 2;
+        for(int i = 3; i <= num; i++)
+            if(result[i] == 0)
+                result[i] = result[d] + result[i - d];
+            else d = i;
+        
+        return result;
+    }
+}
