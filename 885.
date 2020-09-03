@@ -1,0 +1,39 @@
+class Solution {
+    private boolean inrange(int x, int y, int r, int c){
+        if(x >= 0 && x < r && y >= 0 && y < c) return true;
+        return false;
+    }
+    private void cast(int[][] res, int x, int y, int r, int c, int z, int castIndex){
+        if(castIndex == r*c) return;
+        int k1 = z;
+        while(k1-- > 0){
+            y++;
+            if(inrange(x,y,r,c)) res[castIndex++] =new int[]{x, y};
+        }
+        k1 = z;
+        while(k1-- > 0){
+            x++;
+            if(inrange(x,y,r,c)) res[castIndex++] = new int[]{x, y};
+        }
+        z++;
+        k1 = z;
+        while(k1-- > 0){
+            y--;
+            if(inrange(x,y,r,c)) res[castIndex++] = new int[]{x, y};
+        }
+        k1 = z;
+        while(k1-- > 0){
+            x--;
+            if(inrange(x,y,r,c)) res[castIndex++] = new int[]{x, y};
+        }
+        cast(res, x, y, r, c, ++z, castIndex);
+            
+    }
+    public int[][] spiralMatrixIII(int R, int C, int r0, int c0) {
+        int n = R*C;
+        int[][] result = new int[n][2];
+        result[0] = new int[]{r0, c0};
+        cast(result, r0, c0, R, C, 1, 1);
+        return result;
+    }
+}
