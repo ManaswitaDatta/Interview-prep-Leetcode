@@ -1,0 +1,29 @@
+class CombinationIterator {
+    int k = 0;
+    List<String> combo;
+    private void prepareList(List<String> combo, int n, char[] str, StringBuilder sb, int start){
+        if(sb.length() == n){
+            combo.add(sb.toString());
+            return;
+        }
+        for(int i = start; i < str.length; i++){
+            sb.append(str[i]);
+            prepareList(combo, n, str, sb, i+1);
+            sb.delete(sb.length()-1, sb.length());
+        }
+    }
+    
+    public CombinationIterator(String characters, int combinationLength) {
+        this.combo = new ArrayList<>();
+        prepareList(combo, combinationLength, characters.toCharArray(), new StringBuilder(), 0);
+    }
+    
+    public String next() {
+        return combo.get(k++);
+    }
+    
+    public boolean hasNext() {
+        if(k < combo.size()) return true;
+        return false;
+    }
+}
