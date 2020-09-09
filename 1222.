@@ -1,0 +1,98 @@
+class Solution {
+    private List<Integer> addToList(int[] queens){
+        List<Integer> list = new ArrayList<>();
+        list.add(queens[0]);
+        list.add(queens[1]);
+        return list;
+    }
+    public List<List<Integer>> queensAttacktheKing(int[][] queens, int[] king) {
+        HashSet<List<Integer>> q = new HashSet<>();
+        for(int i = 0; i < queens.length; i++){
+            q.add(addToList(queens[i]));
+        }
+        int x = king[0], y = king[1];
+        List<List<Integer>> result = new ArrayList<>();
+    
+        while(--x >= 0){
+            List<Integer> pix = addToList(new int[]{x,y});
+            if(q.contains(pix)){
+                result.add(pix);
+                break;
+            }
+        }
+        
+        x = king[0];
+        
+        while(--y >= 0){
+            List<Integer> pix = addToList(new int[]{x,y}); 
+            if(q.contains(pix)){
+                result.add(pix);
+                break;
+            }
+        }
+        
+        y = king[1];
+        
+        while(++x < 8){
+            List<Integer> pix = addToList(new int[]{x,y});
+            if(q.contains(pix)){
+                result.add(pix);
+                break;
+            }
+        }
+        
+        x = king[0];
+        
+        while(++y < 8){
+            List<Integer> pix = addToList(new int[]{x,y}); 
+            if(q.contains(pix)){
+                result.add(pix);
+                break;
+            }
+        }
+        
+        y = king[1];
+        
+        while(++x < 8 && ++y < 8){
+            List<Integer> pix = addToList(new int[]{x,y});
+            if(q.contains(pix)){
+                result.add(pix);
+                break;
+            }
+        }
+        
+        x = king[0];
+        y = king[1];
+        
+        while(--x >= 0 && --y >= 0){
+            List<Integer> pix = addToList(new int[]{x,y});
+            if(q.contains(pix)){
+                result.add(pix);
+                break;
+            }
+        }
+        
+        x = king[0];
+        y = king[1];
+        
+        while(++x < 8 && --y >= 0){
+            List<Integer> pix = addToList(new int[]{x,y}); 
+            if(q.contains(pix)){
+                result.add(pix);
+                break;
+            }
+        }
+        
+        x = king[0];
+        y = king[1];
+        
+        while(--x >= 0 && ++y < 8){
+            List<Integer> pix = addToList(new int[]{x,y}); 
+            if(q.contains(pix)){
+                result.add(pix);
+                break;
+            }
+        }
+        return result;
+    }
+}
