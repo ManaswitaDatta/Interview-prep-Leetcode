@@ -1,0 +1,14 @@
+class Solution {
+    private int find(TreeNode root, int[] count){
+        if(root == null) return  0;
+        int left = find(root.left, count);
+        int right = find(root.right, count);
+        count[0] += Math.abs(left - right);
+        return root.val + left + right;
+    }
+    public int findTilt(TreeNode root) {
+        int[] count = new int[1];
+        find(root, count);
+        return count[0];
+    }
+}
