@@ -1,0 +1,7 @@
+class Solution {
+    public int arrangeCoins(int n) {
+        if(n < 2) return n;
+        long k = (long)Math.sqrt(1 + 8.0*n);
+        return (int)--k/2;
+    }
+}
