@@ -1,0 +1,15 @@
+class Solution {
+    public int[] deckRevealedIncreasing(int[] deck) {
+        int n = deck.length;
+        int[] res = new int[n];
+        Queue<Integer> q = new LinkedList<>();
+        for(int i = 0; i < n; i++) q.offer(i);
+        Arrays.sort(deck);
+        int i = 0;
+        while(i < n){
+            res[q.poll()] = deck[i++];
+            q.offer(q.poll());
+        }
+        return res;
+    }
+}
