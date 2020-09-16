@@ -1,0 +1,34 @@
+class Solution {
+    private void swap(int i, int j, int[] arr){
+        while(i < j){
+            int t = arr[i];
+            arr[i++] = arr[j];
+            arr[j--] = t;
+        }
+    }
+    private int findMax(int s, int e, int[] arr){
+        int max = Integer.MIN_VALUE;
+        int index = -1;
+        for(int i = s; i <= e; i++)
+            if(arr[i] > max){
+                index = i;
+                max = arr[i];
+            } 
+        return index;
+    }
+    public List<Integer> pancakeSort(int[] arr) {
+        int n = arr.length;
+        List<Integer> result = new ArrayList<>();
+        for(int i = n-1; i >=0 ; i--){
+            int index = findMax(0,i, arr);
+            
+            if(i != index){
+                result.add(index+1);
+                swap(0, index, arr);
+                result.add(i+1);
+                swap(0, i, arr);
+            }
+        }
+        return result; 
+    }
+}
