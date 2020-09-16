@@ -1,0 +1,16 @@
+class Solution {
+    public int subarraysDivByK(int[] A, int K) {
+        int[] freq = new int[K];
+        freq[0] = 1;
+        int rem = 0;
+        int count = 0;
+        for(int x : A){
+            rem += x;
+            rem = rem%K;
+            if(rem < 0) rem += K;
+            count+= freq[rem];
+            freq[rem]++;
+        }
+        return count;
+    }
+}
