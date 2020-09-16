@@ -1,0 +1,17 @@
+class Solution {
+    public int trap(int[] nums) {
+        int n = nums.length;
+        if(n <= 2) return 0;
+        int i = 1, j = n-2;
+        int left = nums[0];
+        int right = nums[n-1];
+        int water = 0;
+        while(i <= j){
+            left = Math.max(left, nums[i]);
+            right = Math.max(right, nums[j]);
+            if(left <= right) water += left - nums[i++];
+            else water += right - nums[j--];
+        }
+        return water;
+    }
+}
