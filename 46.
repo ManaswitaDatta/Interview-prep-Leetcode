@@ -1,0 +1,25 @@
+class Solution {
+    private void swap(int[] nums, int i, int j){
+        int t = nums[i];
+        nums[i] = nums[j];
+        nums[j] = t;
+    }
+    private void permu(int[] nums, int l, int r, List<List<Integer>> result){
+        if(l == r){
+            List<Integer> list = new ArrayList<>();
+            for(int x : nums) list.add(x);
+            result.add(list);
+            return;
+        }
+        for(int i = l; i <= r; i++){
+            swap(nums, i, l);
+            permu(nums, l+1, r, result);
+            swap(nums, i, l);
+        }
+    }
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        permu(nums, 0, nums.length-1, result);
+        return result;
+    }
+}
