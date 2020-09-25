@@ -1,0 +1,25 @@
+class Solution {
+    private boolean check(int[] arr){
+        for(int x : arr)
+            if(x != 0) return false;
+        return true;
+    }
+    public List<Integer> findAnagrams(String s, String p) {
+        List<Integer> result = new ArrayList<>();
+        int l1 = s.length(), l2 = p.length();
+        if(l1 < l2) return result;
+        int[] freq = new int[26];
+        
+        for(int i = 0; i < l2; i++){
+            freq[p.charAt(i) - 'a']++;
+            freq[s.charAt(i) - 'a']--;
+        }
+        if(check(freq)) result.add(0);
+        for(int i = l2; i < l1; i++){
+             freq[s.charAt(i) - 'a']--;
+             freq[s.charAt(i - l2) - 'a']++;
+            if(check(freq)) result.add(i - l2 + 1);
+        }
+        return result;
+    }
+}
