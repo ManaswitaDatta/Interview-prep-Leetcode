@@ -1,0 +1,31 @@
+class Solution {
+    public List<String> letterCombinations(String digits) {
+        String[] keypad = {"", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        List<String> result = new ArrayList<>();
+        if(digits.length() == 0){
+            return result;
+        }
+        lc(0, digits, keypad, new StringBuilder(),result);
+        return result;
+    }
+    private void lc(int e, String digits, String[] keypad, StringBuilder str, List<String> result){
+        
+        if(e == digits.length()){
+            result.add(new String(str.toString()));
+            return;
+        }
+       
+        if(digits.charAt(e) == '1'){
+            lc(e+1, digits, keypad, str, result);
+            return;
+        }
+            
+        String list = keypad[digits.charAt(e) - '1'];
+        for(int i = 0; i < list.length(); i++){
+            str.append(list.charAt(i));
+            lc(e+1, digits, keypad, str, result);
+            str.deleteCharAt(str.length() - 1);
+        }
+        
+    }
+}
