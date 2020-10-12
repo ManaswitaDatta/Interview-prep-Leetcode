@@ -1,0 +1,26 @@
+class Solution {
+    private boolean freq(String a){
+        int[] f = new int[26];
+        for(char x : a.toCharArray()){
+            if(++f[x - 'a'] >= 2) return true;
+        }
+        return false;
+    }
+    public boolean buddyStrings(String A, String B) {
+        int l1 = A.length(), l2 = B.length();
+        if(l1 != l2 || l1 < 2) return false;
+        if(A.equals(B))
+            if(freq(A)) return true;
+            else return false;
+        int x = -1, y = -1; // not same
+        for(int i = 0; i < l1; i++){
+            if(A.charAt(i) != B.charAt(i))
+                if(x == -1) x = i;
+                else if(y == -1) y = i;
+                else return false;
+        }
+        if(x == -1 || y == -1) return false;
+        if(A.charAt(x) == B.charAt(y) && A.charAt(y) == B.charAt(x)) return true;
+        return false;
+    }
+}
