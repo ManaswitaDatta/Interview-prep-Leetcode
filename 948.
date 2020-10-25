@@ -1,0 +1,22 @@
+class Solution {
+    public int bagOfTokensScore(int[] token, int P) {
+        int score = 0;
+        int n = token.length;
+        if(n == 0) return score;
+        Arrays.sort(token);
+        int i = 0, j = n-1;
+        while(i < j){
+            if(P >= token[i]){
+               P -= token[i++];
+                score++;
+            }
+            else{
+                P += token[j--];
+                score--;
+            }
+            if(score < 0) return 0;
+        }
+        if(i == j && P >= token[i]) score++;
+        return score;
+    }
+}
