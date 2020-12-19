@@ -1,2 +1,2 @@
 # Competitive-Programming-Leetcode
-This repository contains all my leetcode solutions in java
+This repository contains some of my leetcode solutions in java
