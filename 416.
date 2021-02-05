@@ -1,0 +1,22 @@
+class Solution {
+    private boolean subsetSum(int sum, int[] arr, int n){
+        //find one partition with sum as sum then the rest of the partition will sum up to sum only
+        boolean[][] dp = new boolean[n+1][sum+1];
+        for(int i = 0; i <= sum; i++) dp[0][i] = false;
+        for(int i = 0; i <= n; i++) dp[i][0] = true;
+        for(int i = 1; i <= n; i++)
+            for(int j = 1; j <= sum; j++){
+                if(arr[i-1] > j) dp[i][j] = dp[i-1][j];
+                else dp[i][j] = dp[i-1][j] || dp[i-1][j-arr[i-1]];
+            }
+        return dp[n][sum];
+    }
+    public boolean canPartition(int[] nums) {
+        int sum = 0;
+        for(int x : nums)
+            sum += x;
+        int n = nums.length;
+        if(sum % 2 == 1) return false;
+        return subsetSum(sum/2, nums, n);
+    }
+}
