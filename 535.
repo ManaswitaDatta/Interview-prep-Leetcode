@@ -1,0 +1,31 @@
+public class Codec {
+    HashMap<String, String> ind = new HashMap<>();
+    HashMap<String, String> revind = new HashMap<>();
+    String base = "http://tinyurl.com/";
+    // Encodes a URL to a shortened URL.
+    public String encode(String longUrl) {
+        if(revind.containsKey(longUrl)) return base + revind.get(longUrl);
+        String charset = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        String key = null;
+        do{
+            StringBuilder sb = new StringBuilder();
+            for(int i = 0; i < 6; i++){
+                int c = (int)(Math.random()*charset.length());
+                sb.append(charset.charAt(c));
+            }
+            key = sb.toString();
+        }while(ind.containsKey(key));
+        ind.put(key, longUrl);
+        revind.put(longUrl, key);
+        return base+key;
+    }
+
+    // Decodes a shortened URL to its original URL.
+    public String decode(String shortUrl) {
+     return ind.get(shortUrl.replace(base,""));   
+    }
+}
+
+// Your Codec object will be instantiated and called as such:
+// Codec codec = new Codec();
+// codec.decode(codec.encode(url));
